@@ -3,14 +3,14 @@ version: '3.9'
 services:
 
   composer:
-    image: composer:1
+    image: composer:1.9.3
     working_dir: /ver/www/html
     volumes:
       - ./:/ver/www/html
     command: composer install
       
   mysql:
-    image: mysql:8
+    image: mysql:8.0.28
     environment:
       MYSQL_ROOT_PASSWORD: supersecret
       MYSQL_USER: $DB_USERNAME
