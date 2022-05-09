@@ -18,6 +18,7 @@ class EpisodeResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'air_date' => $this->air_date,
+            'characters' => CharacterResource::collection($this->characters),
         ];
     }
 }

@@ -10,11 +10,15 @@ class EpisodeController extends Controller
 {
     public function index()
     {
-        return new EpisodeCollection(Episode::all());
+        return new EpisodeCollection(
+            Episode::with('characters')->get()
+        );
     }
 
     public function show(int $id)
     {
-        return new EpisodeResource(Episode::findOrFail($id));
+        return new EpisodeResource(
+            Episode::with('characters')->findOrFail($id)
+        );
     }
 }
