@@ -14,6 +14,8 @@ class EpisodeSeeder extends Seeder
      */
     public function run()
     {
-        $episodes = Episode::factory()->count(30)->create();
+        $episodes = Episode::factory()
+            ->count(env('SEEDER_EPISODE_COUNT'))
+            ->create();
     }
 }
