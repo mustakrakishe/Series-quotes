@@ -15,11 +15,7 @@ class CharacterSeeder extends Seeder
     public function run()
     {
         $characters = Character::factory()
-            ->hasQuotes(rand(
-                env('SEEDER_QUOTE_PER_CHARACTER_MIN'),
-                env('SEEDER_QUOTE_PER_CHARACTER_MAX')
-            ))
-            ->count(5)
+            ->count(env('SEEDER_CHARACTER_COUNT'))
             ->create();
     }
 }
