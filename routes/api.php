@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\EpisodeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('episodes', EpisodeController::class)->only(['index', 'show']);
+Route::get('/characters', [CharacterController::class, 'index']);
