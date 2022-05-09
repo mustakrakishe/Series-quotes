@@ -14,4 +14,14 @@ class Quote extends Model
         'episode_id',
         'character_id',
     ];
+    
+    public function character()
+    {
+        return $this->belongsTo(Character::class);
+    }
+    
+    public function episode()
+    {
+        return $this->belongsTo(Episode::class);
+    }
 }

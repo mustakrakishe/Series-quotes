@@ -13,4 +13,9 @@ class Episode extends Model
         'title',
         'air_date',
     ];
+    
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class);
+    }
 }

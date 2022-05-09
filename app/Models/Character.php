@@ -17,4 +17,9 @@ class Character extends Model
         'nickname',
         'portrayed',
     ];
+    
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class);
+    }
 }
