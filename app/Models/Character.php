@@ -18,6 +18,11 @@ class Character extends Model
         'portrayed',
     ];
     
+    public function episodes()
+    {
+        return $this->belongsToMany(Episode::class);
+    }
+    
     public function quotes()
     {
         return $this->hasMany(Quote::class);

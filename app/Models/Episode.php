@@ -14,6 +14,11 @@ class Episode extends Model
         'air_date',
     ];
     
+    public function characters()
+    {
+        return $this->belongsToMany(Character::class);
+    }
+    
     public function quotes()
     {
         return $this->hasMany(Quote::class);
