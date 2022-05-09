@@ -22,8 +22,10 @@ class EpisodeFactory extends Factory
     public function definition()
     {
         return [
-            'title' => substr($this->faker->sentence(2, 5), 0, -1),
-            'air_date' => $this->faker->date(),
+            'title' => substr($this->faker->unique()->sentence(2, 5), 0, -1),
+            'air_date' => $this->faker
+                ->dateTimeBetween('2008-01-20', '2013-09-29')
+                ->format('Y-m-d'),
         ];
     }
 }
