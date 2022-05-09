@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             CharacterSeeder::class,
             EpisodeSeeder::class,
             EpisodeCharacterSeeder::class,
-            // QuoteSeeder::class,
+            QuoteSeeder::class,
         ]);
     }
 }
