@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             EpisodeSeeder::class,
+            CharacterSeeder::class,
         ]);
     }
 }
