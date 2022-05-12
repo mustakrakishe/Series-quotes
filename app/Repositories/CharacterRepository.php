@@ -8,12 +8,12 @@ class CharacterRepository
 {
     public function getAll()
     {
-        return Character::all();
+        return Character::with(['episodes', 'quotes'])->get();
     }
     
     public function getFirstByName(string $name)
     {
-        return Character::whereRaw(
+        return Character::with(['episodes', 'quotes'])->whereRaw(
             'UPPER(name) = ?',
             [strtoupper($name)]
         )->firstOrFail();
@@ -21,6 +21,6 @@ class CharacterRepository
 
     public function getOneRandom()
     {
-        return Character::inRandomOrder()->first();
+        return Character::with(['episodes', 'quotes'])->inRandomOrder()->first();
     }
 }

@@ -18,7 +18,7 @@ class CharacterController extends Controller
 
     public function index(CharacterGetByNameRequest $request)
     {
-        if ($name = $request->validated('name')) {
+        if ($name = $request->input('name')) {
             return new CharacterResource($this->repository->getFirstByName($name));
         }
         

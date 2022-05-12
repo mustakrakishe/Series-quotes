@@ -17,11 +17,6 @@ class Character extends Model
         'nickname',
         'portrayed',
     ];
-
-    protected $with = [
-        'episodes',
-        'quotes',
-    ];
     
     public function episodes()
     {
