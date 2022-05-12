@@ -24,4 +24,9 @@ class CharacterController extends Controller
         
         return new CharacterCollection($this->repository->getAll());
     }
+
+    public function getOneRandom()
+    {
+        return new CharacterResource($this->repository->getOneRandom());
+    }
 }

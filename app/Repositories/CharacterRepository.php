@@ -18,4 +18,9 @@ class CharacterRepository
             [strtoupper($name)]
         )->firstOrFail();
     }
+
+    public function getOneRandom()
+    {
+        return Character::inRandomOrder()->first();
+    }
 }
