@@ -21,4 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('episodes', EpisodeController::class)->only(['index', 'show']);
-Route::get('/characters', [CharacterController::class, 'index']);
+Route::resource('characters', CharacterController::class)->only('index');
