@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\QuoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('episodes', EpisodeController::class)->only(['index', 'show']);
+
 Route::resource('characters', CharacterController::class)->only('index');
 Route::get('characters/random', [CharacterController::class, 'getOneRandom']);
+
+Route::resource('quotes', QuoteController::class)->only('index');
