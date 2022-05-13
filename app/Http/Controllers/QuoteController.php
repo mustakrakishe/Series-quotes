@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuoteGetOneByRandomByCharacterNameRequest;
 use App\Http\Resources\QuoteCollection;
+use App\Http\Resources\QuoteResource;
 use App\Repositories\QuoteRepository;
 
 class QuoteController extends Controller
@@ -18,6 +20,13 @@ class QuoteController extends Controller
     {
         return new QuoteCollection(
             $this->repository->getAll()
+        );
+    }
+
+    public function getOneRandomByCharacterName(QuoteGetOneByRandomByCharacterNameRequest $request)
+    {
+        return new QuoteResource(
+            $this->repository->getOneRandomByCharacterName($request->input('character_name'))
         );
     }
 }

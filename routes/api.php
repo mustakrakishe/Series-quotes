@@ -27,3 +27,4 @@ Route::resource('characters', CharacterController::class)->only('index');
 Route::get('characters/random', [CharacterController::class, 'getOneRandom']);
 
 Route::resource('quotes', QuoteController::class)->only('index');
+Route::get('quotes/random', [QuoteController::class, 'getOneRandomByCharacterName']);
