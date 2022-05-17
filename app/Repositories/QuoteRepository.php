@@ -19,6 +19,6 @@ class QuoteRepository
                 $query->whereName($name);
             })
             ->inRandomOrder()
-            ->first();
+            ->firstOrFail();
     }
 }
