@@ -14,8 +14,11 @@ class QuoteRepository
 
     public function getOneRandomByCharacterName(string $name)
     {
-        return Quote::with(['character', 'episode'])->whereHas('character', function (Builder $query) use ($name) {
-            $query->whereName($name);
-        })->inRandomOrder()->first();
+        return Quote::with(['character', 'episode'])
+            ->whereHas('character', function (Builder $query) use ($name) {
+                $query->whereName($name);
+            })
+            ->inRandomOrder()
+            ->first();
     }
 }
