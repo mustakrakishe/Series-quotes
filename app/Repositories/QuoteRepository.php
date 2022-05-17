@@ -16,7 +16,7 @@ class QuoteRepository
     {
         return Quote::with(['character', 'episode'])
             ->whereHas('character', function (Builder $query) use ($name) {
-                $query->whereName($name);
+                $query->whereRaw('UPPER(name) = ?', [strtoupper($name)]);
             })
             ->inRandomOrder()
             ->firstOrFail();

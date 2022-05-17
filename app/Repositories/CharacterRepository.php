@@ -13,14 +13,15 @@ class CharacterRepository
     
     public function getFirstByName(string $name)
     {
-        return Character::with(['episodes', 'quotes'])->whereRaw(
-            'UPPER(name) = ?',
-            [strtoupper($name)]
-        )->firstOrFail();
+        return Character::with(['episodes', 'quotes'])
+            ->whereRaw('UPPER(name) = ?', [strtoupper($name)])
+            ->firstOrFail();
     }
 
     public function getOneRandom()
     {
-        return Character::with(['episodes', 'quotes'])->inRandomOrder()->first();
+        return Character::with(['episodes', 'quotes'])
+            ->inRandomOrder()
+            ->firstOrFail();
     }
 }
