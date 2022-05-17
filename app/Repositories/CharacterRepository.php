@@ -6,9 +6,9 @@ use App\Models\Character;
 
 class CharacterRepository
 {
-    public function getAll()
+    public function getAll(int $perPage)
     {
-        return Character::with(['episodes', 'quotes'])->get();
+        return Character::with(['episodes', 'quotes'])->paginate($perPage);
     }
     
     public function getFirstByName(string $name)
