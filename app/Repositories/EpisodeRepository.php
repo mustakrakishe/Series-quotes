@@ -6,9 +6,9 @@ use App\Models\Episode;
 
 class EpisodeRepository
 {
-    public function getAll()
+    public function getAll(?int $perPage)
     {
-        return Episode::with('characters')->get();
+        return Episode::with('characters')->paginate($perPage);
     }
     
     public function getById(int $id)

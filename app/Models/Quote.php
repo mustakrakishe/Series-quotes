@@ -14,6 +14,8 @@ class Quote extends Model
         'episode_id',
         'character_id',
     ];
+
+    public $perPage = 10;
     
     public function character()
     {

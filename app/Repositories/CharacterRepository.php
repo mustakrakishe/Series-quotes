@@ -6,7 +6,7 @@ use App\Models\Character;
 
 class CharacterRepository
 {
-    public function getAll(int $perPage)
+    public function getAll(?int $perPage)
     {
         return Character::with(['episodes', 'quotes'])->paginate($perPage);
     }

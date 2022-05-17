@@ -6,6 +6,7 @@ use App\Http\Resources\CharacterCollection;
 use App\Http\Resources\CharacterResource;
 use App\Http\Requests\CharacterGetByNameRequest;
 use App\Http\Requests\PaginationRequest;
+use App\Models\Character;
 use App\Repositories\CharacterRepository;
 use Illuminate\Http\Request;
 
@@ -37,16 +38,16 @@ class CharacterController extends Controller
 
     public function getAll(PaginationRequest $request)
     {
-        return new CharacterCollection($this->repository->getAll(
-            $request->input('limit') ?? 10
-        ));
+        return new CharacterCollection(
+            $this->repository->getAll($request->input('limit'))
+        );
     }
 
     public function getOneByName(CharacterGetByNameRequest $request)
     {
-        return new CharacterResource($this->repository->getFirstByName(
-            $request->input('name')
-        ));
+        return new CharacterResource(
+            $this->repository->getFirstByName($request->input('name'))
+        );
     }
 
     public function getOneRandom()

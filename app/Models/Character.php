@@ -17,6 +17,8 @@ class Character extends Model
         'nickname',
         'portrayed',
     ];
+
+    public $perPage = 10;
     
     public function episodes()
     {

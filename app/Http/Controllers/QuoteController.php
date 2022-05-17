@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaginationRequest;
 use App\Http\Requests\QuoteGetOneByRandomByCharacterNameRequest;
 use App\Http\Resources\QuoteCollection;
 use App\Http\Resources\QuoteResource;
@@ -16,10 +17,10 @@ class QuoteController extends Controller
         $this->repository = $repository;
     }
 
-    public function index()
+    public function index(PaginationRequest $request)
     {
         return new QuoteCollection(
-            $this->repository->getAll()
+            $this->repository->getAll($request->input('limit'))
         );
     }
 

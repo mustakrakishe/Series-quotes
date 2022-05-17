@@ -13,6 +13,8 @@ class Episode extends Model
         'title',
         'air_date',
     ];
+
+    public $perPage = 10;
     
     public function characters()
     {
