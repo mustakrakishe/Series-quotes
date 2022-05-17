@@ -6,6 +6,10 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class CharacterCollection extends ResourceCollection
 {
+    public $with = [
+        'success' => true,
+    ];
+
     /**
      * The resource that this resource collects.
      *

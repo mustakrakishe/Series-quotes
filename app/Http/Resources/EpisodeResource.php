@@ -6,6 +6,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class EpisodeResource extends JsonResource
 {
+    public $with = [
+        'success' => true,
+    ];
+    
     /**
      * Transform the resource into an array.
      *

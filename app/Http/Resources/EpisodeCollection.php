@@ -6,6 +6,10 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class EpisodeCollection extends ResourceCollection
 {
+    public $with = [
+        'success' => true,
+    ];
+    
     /**
      * The resource that this resource collects.
      *

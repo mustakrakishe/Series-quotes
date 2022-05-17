@@ -6,6 +6,10 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class QuoteCollection extends ResourceCollection
 {
+    public $with = [
+        'success' => true,
+    ];
+    
     /**
      * Transform the resource collection into an array.
      *
