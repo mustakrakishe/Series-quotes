@@ -25,7 +25,7 @@ class PaginationRequest extends FormRequest
     {
         return [
             'limit' => 'integer|min:1',
-            'page' => 'numeric|min:1',
+            'page' => 'integer|min:1',
         ];
     }
 }
