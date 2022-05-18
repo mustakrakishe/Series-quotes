@@ -40,4 +40,17 @@ class Handler extends ExceptionHandler
     {
         return true;
     }
+
+    /**
+     * Convert the given exception to an array.
+     *
+     * @param  \Throwable  $e
+     * @return array
+     */
+    protected function convertExceptionToArray(Throwable $e)
+    {
+        $array = parent::convertExceptionToArray($e);
+        $array['success'] = false;
+        return $array;
+    }
 }
