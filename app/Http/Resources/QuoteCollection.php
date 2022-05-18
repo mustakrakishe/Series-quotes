@@ -2,24 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
-
-class QuoteCollection extends ResourceCollection
+class QuoteCollection extends AppResourceCollection
 {
-    public $with = [
-        'success' => true,
-    ];
-    
-    /**
-     * Transform the resource collection into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
-    public function toArray($request)
-    {
-        return [
-            'data' => $this->collection,
-        ];
-    }
+    public $collects = QuoteResource::class;
 }
