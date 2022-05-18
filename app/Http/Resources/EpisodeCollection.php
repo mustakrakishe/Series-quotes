@@ -17,6 +17,19 @@ class EpisodeCollection extends ResourceCollection
      */
     public $collects = EpisodeResource::class;
 
+    public function __construct($resource)
+    {
+        $this->pagination = [
+            'total' => $resource->total(),
+            'count' => $resource->count(),
+            'per_page' => $resource->perPage(),
+            'current_page' => $resource->currentPage(),
+            'total_pages' => $resource->lastPage()
+        ];
+
+        parent::__construct($resource->getCollection());
+    }
+
     /**
      * Transform the resource collection into an array.
      *
@@ -27,6 +40,7 @@ class EpisodeCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection,
+            'pagination' => $this->pagination,
         ];
     }
 }
