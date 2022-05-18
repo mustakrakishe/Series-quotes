@@ -6,7 +6,6 @@ use App\Http\Resources\CharacterCollection;
 use App\Http\Resources\CharacterResource;
 use App\Http\Requests\CharacterGetByNameRequest;
 use App\Http\Requests\PaginationRequest;
-use App\Models\Character;
 use App\Repositories\CharacterRepository;
 use Illuminate\Http\Request;
 
@@ -26,27 +25,17 @@ class CharacterController extends Controller
 
             $getByNameRequest->validate($getByNameRequest->rules());
 
-            return $this->getOneByName($getByNameRequest);
+            return new CharacterResource(
+                $this->repository->getFirstByName($getByNameRequest->input('name'))
+            );
         }
 
         $getAllRequest = new PaginationRequest($request->all());
         
         $getAllRequest->validate($getAllRequest->rules());
         
-        return $this->getAll($getAllRequest);
-    }
-
-    public function getAll(PaginationRequest $request)
-    {
         return new CharacterCollection(
-            $this->repository->getAll($request->input('limit'))
-        );
-    }
-
-    public function getOneByName(CharacterGetByNameRequest $request)
-    {
-        return new CharacterResource(
-            $this->repository->getFirstByName($request->input('name'))
+            $this->repository->getAll($getAllRequest->input('limit'))
         );
     }
 
