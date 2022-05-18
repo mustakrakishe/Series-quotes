@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PaginationRequest;
 use App\Http\Resources\EpisodeCollection;
 use App\Http\Resources\EpisodeResource;
-use App\Models\Episode;
 use App\Repositories\EpisodeRepository;
 
 class EpisodeController extends Controller
