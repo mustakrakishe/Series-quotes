@@ -2,20 +2,8 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
-class QuoteResource extends JsonResource
+class QuoteResource extends AppJsonResource
 {
-    public $with = [
-        'success' => true,
-    ];
-    
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
         return [
