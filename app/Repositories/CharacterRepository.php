@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\Character\CharacterByNameNotFoundException;
 use App\Models\Character;
 
 class CharacterRepository
@@ -13,9 +14,15 @@ class CharacterRepository
     
     public function getFirstByName(string $name)
     {
-        return Character::with(['episodes', 'quotes'])
+        $character = Character::with(['episodes', 'quotes'])
             ->whereRaw('UPPER(name) = ?', [strtoupper($name)])
-            ->firstOrFail();
+            ->first();
+
+        if ($character) {
+            return $character;
+        }
+
+        throw (new CharacterByNameNotFoundException)->setName($name);
     }
 
     public function getOneRandom()
