@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Exceptions\Quote\QuoteRandomByCharacterNameNotFound;
 use App\Models\Quote;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -14,11 +15,17 @@ class QuoteRepository
 
     public function getOneRandomByCharacterName(string $name)
     {
-        return Quote::with(['character', 'episode'])
+        $quote = Quote::with(['character', 'episode'])
             ->whereHas('character', function (Builder $query) use ($name) {
                 $query->whereRaw('UPPER(name) = ?', [strtoupper($name)]);
             })
             ->inRandomOrder()
-            ->firstOrFail();
+            ->first();
+        
+        if ($quote) {
+            return $quote;
+        }
+
+        throw (new QuoteRandomByCharacterNameNotFound)->setName($name);
     }
 }
