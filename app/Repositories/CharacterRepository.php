@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Exceptions\Character\CharacterByNameNotFoundException;
+use App\Exceptions\Character\CharacterRandomNotFoundException;
 use App\Models\Character;
 
 class CharacterRepository
@@ -27,8 +28,14 @@ class CharacterRepository
 
     public function getOneRandom()
     {
-        return Character::with(['episodes', 'quotes'])
+        $character = Character::with(['episodes', 'quotes'])
             ->inRandomOrder()
-            ->firstOrFail();
+            ->first();
+
+        if ($character) {
+            return $character;
+        }
+
+        throw new CharacterRandomNotFoundException();
     }
 }
