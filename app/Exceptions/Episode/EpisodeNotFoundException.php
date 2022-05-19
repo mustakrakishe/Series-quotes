@@ -2,9 +2,14 @@
 
 namespace App\Exceptions\Episode;
 
-use App\Exceptions\AppModelNotFoundException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class EpisodeNotFoundException extends AppModelNotFoundException
+class EpisodeNotFoundException extends ModelNotFoundException
 {
-    protected $entityName = 'Episode';
+    public function setId($id)
+    {
+        $this->message = "Episode #$id does no exist.";
+
+        return $this;
+    }
 }
