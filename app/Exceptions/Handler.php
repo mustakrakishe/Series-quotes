@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -18,19 +17,15 @@ class Handler extends ExceptionHandler
         return true;
     }
 
-    protected function convertExceptionToArray(Throwable $e)
+    public function render($request, Throwable $e)
     {
-        $array = parent::convertExceptionToArray($e);
-        $array['success'] = false;
-        return $array;
-    }
+        $response = parent::render($request, $e);
 
-    protected function invalidJson($request, ValidationException $exception)
-    {
-        return response()->json([
-            'message' => $exception->getMessage(),
-            'errors' => $exception->errors(),
-            'success' => false,
-        ], $exception->status);
+        $content = json_decode($response->getContent());
+        $content->success = false;
+
+        $response->setContent(json_encode($content));
+
+        return $response;
     }
 }
