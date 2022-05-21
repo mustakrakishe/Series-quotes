@@ -13,23 +13,14 @@ body > .wrapper {
     padding-bottom: 40px;
 }
 
-main {
-    display: block;
-}
-
-.form-signin {
+.auth-form {
+    width: 100%;
     max-width: 330px;
+    margin: 0 auto;
     padding: 15px;
 }
 
-.form-signin input[type="name"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-    margin-top: -1px;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
+.form-info {
+    max-width: 720px;
+    padding: 15px;
 }
