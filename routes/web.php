@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserTokenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,16 +20,15 @@ Route::get('/', function () {
     return view('main');
 })->name('main');
 
-Route::get('register', function () {
-    return view('auth.register');
-})->name('register');
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('register', 'showRegisterForm')->name('register');
+    Route::post('register', 'register');
+});
 
-Route::post('register', [RegisterController::class, 'register']);
+Route::controller(LoginController::class)->group(function () {
+    Route::get('login', 'showLoginForm')->name('login');
+    Route::post('login', 'login');
+    Route::post('logout', 'logout')->name('logout');
+});
 
-Route::get('login', function () {
-    return view('auth.login');
-})->name('login');
-
-Route::post('login', [LoginController::class, 'login']);
-
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::resource('users.tokens', UserTokenController::class)->middleware('auth');
