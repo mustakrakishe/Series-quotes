@@ -14,17 +14,19 @@ class Handler extends ExceptionHandler
 
     protected function shouldReturnJson($request, Throwable $e)
     {
-        return true;
+        return $request->is('api/*');
     }
 
     public function render($request, Throwable $e)
     {
         $response = parent::render($request, $e);
 
-        $content = json_decode($response->getContent());
-        $content->success = false;
+        if ($this->shouldReturnJson($request, $e)) {
+            $content = json_decode($response->getContent());
+            $content->success = false;
 
-        $response->setContent(json_encode($content));
+            $response->setContent(json_encode($content));
+        }
 
         return $response;
     }
