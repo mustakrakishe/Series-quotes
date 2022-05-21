@@ -21,10 +21,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('episodes', EpisodeController::class)->only(['index', 'show']);
-
-Route::resource('characters', CharacterController::class)->only('index');
-Route::get('characters/random', [CharacterController::class, 'getOneRandom']);
-
-Route::resource('quotes', QuoteController::class)->only('index');
-Route::get('quotes/random', [QuoteController::class, 'getOneRandomByCharacterName']);
+Route::middleware('auth:api')->group(function () {
+    Route::resource('episodes', EpisodeController::class)->only(['index', 'show']);
+    
+    Route::resource('characters', CharacterController::class)->only('index');
+    Route::get('characters/random', [CharacterController::class, 'getOneRandom']);
+    
+    Route::resource('quotes', QuoteController::class)->only('index');
+    Route::get('quotes/random', [QuoteController::class, 'getOneRandomByCharacterName']);
+});
