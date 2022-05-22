@@ -1,11 +1,11 @@
 <li class="nav-item">
     @isset($method)
-    <form action="{{ route($route) }}" method="{{ $method }}">
+    <form action="{{ $url }}" method="{{ $method }}">
         @csrf
         <button type="submit" class="nav-link">{{ $slot }}</button>
     </form>
     @else
-    <a href="{{ route($route) }}" class="nav-link @if(Route::current()->getName() == $route) active" aria-current="page @endif" >
+    <a href="{{ $url }}" class="nav-link @if(Request::url() == $url) active" aria-current="page @endif" >
         {{ $slot }}
     </a>
     @endisset
