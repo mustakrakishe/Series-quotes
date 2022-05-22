@@ -8,12 +8,13 @@
         </a>
 
         <ul class="nav nav-pills">
-            <x-nav-link :route="'main'">Main</x-nav-link>
+            <x-nav-link :url="route('main')">Main</x-nav-link>
             @auth
-                <x-nav-link :route="'logout'" :method="'post'">Log Out</x-nav-link>
+                <x-nav-link :url="route('users.tokens.index', ['user' => $user ?? '#'])">Tokens</x-nav-link>
+                <x-nav-link :url="route('logout')" :method="'post'">Log Out</x-nav-link>
             @else
-                <x-nav-link :route="'login'">Login</x-nav-link>
-                <x-nav-link :route="'register'">Register</x-nav-link>
+                <x-nav-link :url="route('login')">Login</x-nav-link>
+                <x-nav-link :url="route('register')">Register</x-nav-link>
             @endif
         </ul>
     </header>
