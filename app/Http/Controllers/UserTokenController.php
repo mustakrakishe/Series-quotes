@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserTokenStoreRequest;
 use App\Repositories\TokenRepository;
 use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
 
 class UserTokenController extends Controller
 {
@@ -21,7 +21,7 @@ class UserTokenController extends Controller
         return view('users.tokens.index', ['user' => $this->userRepository->getById($userId)]);
     }
     
-    public function store(Request $request, int $userId)
+    public function store(UserTokenStoreRequest $request, int $userId)
     {
         return view('users.tokens.index', [
             'token' => $this->userRepository->createToken($userId, $request->input('name')),
