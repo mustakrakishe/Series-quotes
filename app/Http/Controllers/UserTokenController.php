@@ -2,64 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Repositories\UserTokenRepository;
+use App\Repositories\TokenRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class UserTokenController extends Controller
 {
-    protected $userTokenRepository;
+    protected $userRepository;
 
-    public function __construct(UserTokenRepository $userTokenRepository)
+    public function __construct(UserRepository $userRepository, TokenRepository $tokenRepository)
     {
-        $this->userTokenRepository = $userTokenRepository;
+        $this->userRepository = $userRepository;
+        $this->tokenRepository = $tokenRepository;
     }
 
-    public function index(User $user)
+    public function index(int $userId)
     {
-        return view('users.tokens.index', compact('user'));
+        return view('users.tokens.index', ['user' => $this->userRepository->getById($userId)]);
+    }
+    
+    public function store(Request $request, int $userId)
+    {
+        return view('users.tokens.index', [
+            'token' => $this->userRepository->createToken($userId, $request->input('name')),
+            'user' => $this->userRepository->getById($userId),
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, User $user)
+    public function destroy(int $userId, int $tokenId)
     {
-        $token = $this->userTokenRepository->create($user, $request->input('name'));
+        $this->userTokenRepository->destroy($tokenId);
 
-        $user->refresh();
-
-        return view('users.tokens.index', compact('user', 'token'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     * @param  \App\Models\User  $user
-     */
-    public function destroy(Request $request, User $user)
-    {
-        $success = $user->tokens()->where('id', $request->token)->delete();
-
-        $user->refresh();
-
-        return view('users.tokens.index', compact('user', 'success'));
+        return view('users.tokens.index', [
+            'user' => $this->userRepository->getById($userId),
+        ]);
     }
 }
