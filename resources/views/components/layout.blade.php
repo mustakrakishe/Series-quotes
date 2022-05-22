@@ -12,7 +12,7 @@
 <body class="text-center">
     <x-header></x-header>
 
-    <div class="wrapper container">
+    <div class="content container">
         {{ $slot }}
     </div>
 
