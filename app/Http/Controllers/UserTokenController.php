@@ -9,7 +9,7 @@ class UserTokenController extends Controller
 {
     public function index(User $user)
     {
-        return view('users.tokens.index', compact('user'))->render();
+        return view('users.tokens.index', compact('user'));
     }
 
     /**
