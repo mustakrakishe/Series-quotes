@@ -8,8 +8,6 @@ class UserTokenRepository
 {
     public function create(User $user, string $tokenName)
     {
-        $token = $user->createToken($tokenName);
-        
-        return $token->plainTextToken;
+        return $user->createToken($tokenName);
     }
 }
