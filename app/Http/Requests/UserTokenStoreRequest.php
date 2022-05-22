@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Exception;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class UserTokenStoreRequest extends FormRequest
 {
@@ -11,9 +13,9 @@ class UserTokenStoreRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(Request $request)
     {
-        return false;
+        return auth()->user()->id === (int) $request->user;
     }
 
     /**
