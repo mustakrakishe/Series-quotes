@@ -12,10 +12,9 @@
 <body class="text-center">
     <x-header></x-header>
 
-    <div class="content container">
+    <main class="container">
         {{ $slot }}
-    </div>
-
+    </main>
 </body>
 
 </html>

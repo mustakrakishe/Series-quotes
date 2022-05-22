@@ -1,9 +1,9 @@
 <x-layout>
     <x-slot name="title">{{ env('APP_NAME') }}</x-slot>
 
-    <main class="form-info w-100 m-auto">
-        <div class="mx-auto">
+    <div class="h-100 w-100 d-flex align-items-center justify-content-center">
+        <div>
             <a href="{{ route('login') }}">Log in</a> or <a href="{{ route('register') }}">Register</a> please.
         </div>
-    </main>
+    </div>
 </x-layout>
