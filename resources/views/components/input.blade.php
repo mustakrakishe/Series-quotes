@@ -1,7 +1,9 @@
-<div class="form-floating mb-3">
+<?php
+    $name = $attributes->get('name');
+?>
+
+<div {{ $attributes->class(['form-floating']) }}>
     <input
-        type="{{ $type }}"
-        name="{{ $name }}"
         class="
             form-control
             @error($name)
@@ -12,18 +14,14 @@
                 @endif
             @enderror
         "
-        value="{{ old($name) }}"
-
-        @isset($placeholder)
-            placeholder="{{ $placeholder }}"
-        @endisset
+        {{ $attributes->except('class') }}
     >
-    
-    <label for="floatingInput">
+
+    <label>
         @error($name)
-            {{ $message }}
+        {{ $message }}
         @else
-            {{ $slot }}
+        {{ $slot }}
         @enderror
     </label>
 </div>
