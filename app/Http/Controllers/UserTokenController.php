@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Repositories\UserTokenRepository;
 use Illuminate\Http\Request;
 
 class UserTokenController extends Controller
 {
+    protected $userTokenRepository;
+
+    public function __construct(UserTokenRepository $userTokenRepository)
+    {
+        $this->userTokenRepository = $userTokenRepository;
+    }
+
     public function index(User $user)
     {
         return view('users.tokens.index', compact('user'));
@@ -21,7 +29,11 @@ class UserTokenController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        //
+        $token = $this->userTokenRepository->create($user, $request->input('name'));
+
+        $user->refresh();
+
+        return view('users.tokens.index', compact('user', 'token'));
     }
 
     /**
