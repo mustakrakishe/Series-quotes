@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use Laravel\Sanctum\PersonalAccessToken;
+use App\Models\PersonalAccessToken;
 
 class TokenRepository
 {
