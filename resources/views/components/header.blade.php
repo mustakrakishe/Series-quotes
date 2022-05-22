@@ -8,8 +8,8 @@
         </a>
 
         <ul class="nav nav-pills">
-            <x-nav-link :url="route('main')">Main</x-nav-link>
             @auth
+                <x-nav-link :url="route('main')">Main</x-nav-link>
                 <x-nav-link :url="route('users.tokens.index', ['user' => $user ?? '#'])">Tokens</x-nav-link>
                 <x-nav-link :url="route('logout')" :method="'post'">Log Out</x-nav-link>
             @else

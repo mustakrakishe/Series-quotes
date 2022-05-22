@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('main');
+    if ($user = auth()->user()) {
+        return view('main', ['user' => $user]);
+    }
+    return view('welcome');
 })->name('main');
 
 Route::controller(RegisterController::class)->group(function () {
