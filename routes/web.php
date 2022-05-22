@@ -34,4 +34,6 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('logout', 'logout')->name('logout');
 });
 
-Route::resource('users.tokens', UserTokenController::class)->middleware('auth');
+Route::resource('users.tokens', UserTokenController::class)
+    ->only(['index', 'store', 'destroy'])
+    ->middleware('auth');
