@@ -10,7 +10,7 @@
         <ul class="nav nav-pills">
             @auth
                 <x-nav-link :url="route('main')">Main</x-nav-link>
-                <x-nav-link :url="route('users.tokens.index', ['user' => $user ?? '#'])">Tokens</x-nav-link>
+                <x-nav-link :url="route('users.tokens.index', ['user' => $user ?? auth()->user()])">Tokens</x-nav-link>
                 <x-nav-link :url="route('logout')" :method="'post'">Log Out</x-nav-link>
             @else
                 <x-nav-link :url="route('login')">Login</x-nav-link>
