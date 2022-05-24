@@ -7,7 +7,8 @@ body {
 }
 
 main {
-    min-height: calc(100% - 73px);
+    height: calc(100% - 73px);
+    min-width: auto;
     padding: 40px 0;
 }
 
