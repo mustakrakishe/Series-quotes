@@ -29,7 +29,6 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    restart: always
     environment:
       PMA_HOST: mysql
       MA_USER: $DB_USERNAME
