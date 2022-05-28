@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\StatisticsResource;
+use App\Http\Resources\TotalStatisticsResource;
+use App\Http\Resources\UserStatisticsResource;
 use App\Repositories\StatisticsRepository;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,13 @@ class StatisticsController extends Controller
         $this->repository = $repository;
     }
 
+    public function getTotalStatistics(Request $request)
+    {
+        return new TotalStatisticsResource($this->repository->countTotalRequests());
+    }
+
     public function getUserStatistics(Request $request)
     {
-        return new StatisticsResource($this->repository->getByUserId($request->user()->id));
+        return new UserStatisticsResource($this->repository->getByUserId($request->user()->id));
     }
 }
