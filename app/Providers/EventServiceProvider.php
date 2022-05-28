@@ -12,7 +12,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        // 
+        \App\Events\ApiRequestHit::class => [
+            \App\Listeners\CountUserRequestHit::class,
+        ],
     ];
 
     /**
