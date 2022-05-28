@@ -27,4 +27,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('quotes/random', [QuoteController::class, 'getOneRandomByCharacterName']);
     
     Route::get('my-stats', [StatisticsController::class, 'getUserStatistics']);
+    Route::get('stats', [StatisticsController::class, 'getTotalStatistics']);
 });
