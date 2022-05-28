@@ -29,6 +29,13 @@ services:
     ports:
       - 8080:80
 
+  redis:
+    image: redis:7-alpine
+    ports:
+      - $REDIS_PORT:6379
+    volumes:
+      - cache-data:/data
+
   php:
     depends_on:
       mysql:
@@ -55,3 +62,4 @@ services:
 
 volumes:
   db-data:
+  cache-data:
