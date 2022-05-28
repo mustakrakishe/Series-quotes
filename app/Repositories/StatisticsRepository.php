@@ -16,18 +16,18 @@ class StatisticsRepository
         return Redis::get('api-total-requests');
     }
 
-    public function updateTotal()
+    public static function updateTotal()
     {
-        Redis::set('api-total-request', $this->countTotalRequests());
+        Redis::set('api-total-requests', self::countTotalRequests());
     }
 
-    public function countTotalRequests() {
-        return array_reduce($this->getKeysStartWith('api:users:'), function ($sum, $cacheCellKeyName) {
+    public static function countTotalRequests() {
+        return array_reduce(self::getKeysStartWith('api:users:'), function ($sum, $cacheCellKeyName) {
             return $sum + Redis::get($cacheCellKeyName);
         });
     }
 
-    public function getKeysStartWith(string $startWith) {
+    public static function getKeysStartWith(string $startWith) {
         return array_map(function ($key) {
             return str_replace(config('database.redis.options.prefix'), '', $key);
         }, Redis::keys("$startWith*"));
