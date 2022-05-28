@@ -18,7 +18,7 @@ class StatisticsController extends Controller
 
     public function getTotalStatistics(Request $request)
     {
-        return new TotalStatisticsResource($this->repository->countTotalRequests());
+        return new TotalStatisticsResource($this->repository->getTotal());
     }
 
     public function getUserStatistics(Request $request)
