@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\StatisticsResource;
 use App\Repositories\StatisticsRepository;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,6 @@ class StatisticsController extends Controller
 
     public function getUserStatistics(Request $request)
     {
-        return $this->repository->getByUserId($request->user()->id);
+        return new StatisticsResource($this->repository->getByUserId($request->user()->id));
     }
 }
