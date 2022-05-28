@@ -9,8 +9,6 @@ class AppResourceCollection extends ResourceCollection
     public $with = [
         'success' => true,
     ];
-    
-    public $collects = EpisodeResource::class;
 
     public function __construct($resource)
     {
