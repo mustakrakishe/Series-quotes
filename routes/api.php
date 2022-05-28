@@ -3,6 +3,7 @@
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,6 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::resource('quotes', QuoteController::class)->only('index');
     Route::get('quotes/random', [QuoteController::class, 'getOneRandomByCharacterName']);
+    
+    Route::get('my-stats', [StatisticsController::class, 'getUserStatistics']);
 });
