@@ -1,11 +1,13 @@
 FROM php:7.4-fpm
 
 COPY ./docker/php/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
 RUN pecl install xdebug redis\
-    && docker-php-ext-install mysqli pdo_mysql redis \
+    && docker-php-ext-install mysqli pdo_mysql \
+    && docker-php-ext-enable redis \
     && chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 9000
