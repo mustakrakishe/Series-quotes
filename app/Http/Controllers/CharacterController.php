@@ -35,7 +35,7 @@ class CharacterController extends Controller
         $getAllRequest->validate($getAllRequest->rules());
         
         return new CharacterCollection(
-            $this->repository->getAll($getAllRequest->input('limit'))
+            $this->repository->getAll($getAllRequest->input('limit'), $getAllRequest->input('page'))
         );
     }
 
