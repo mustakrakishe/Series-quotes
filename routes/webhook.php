@@ -18,3 +18,10 @@ Route::post('telegram', function () {
     $update = Telegram::commandsHandler(true);
     return 'ok';
 });
+
+Route::post('telegram/send', function () {
+    return Telegram::sendMessage([
+        'chat_id' => '810370065', 
+        'text' => 'Hello World'
+      ]);
+});
