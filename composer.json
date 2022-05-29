@@ -16,10 +16,10 @@
         "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "longman/telegram-bot": "^0.77.1"
     },
     "require-dev": {
-        "backpack/devtools": "^1.0",
         "backpack/generators": "^3.1",
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.9.1",
