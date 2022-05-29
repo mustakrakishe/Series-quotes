@@ -6,7 +6,8 @@ COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-RUN apt-get update && apt-get -y install cron \
+RUN apt-get update \
+    && apt-get -y install zip unzip cron \
     && pecl install xdebug redis\
     && docker-php-ext-install mysqli pdo_mysql \
     && docker-php-ext-enable redis \
