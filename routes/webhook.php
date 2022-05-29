@@ -1,7 +1,7 @@
 <?php
 
+use App\Facades\Telegram;
 use Illuminate\Support\Facades\Route;
-use Telegram\Bot\Laravel\Facades\Telegram;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ Route::post('telegram/send', function () {
 });
 
 Route::post('telegram/get-updates', function () {
-    return Telegram::class;
-    // return $updates = Telegram::getUpdates();
-    // return $updates = $telegram->getUpdates();
+    return Telegram::getUpdates();
+    // $telegram = new \Telegram\Bot\Api(env('TELEGRAM_BOT_TOKEN'));
+    // return $telegram->getUpdates();
 });
