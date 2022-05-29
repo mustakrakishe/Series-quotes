@@ -45,6 +45,10 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\DispatchApiRequestHitIfAuthenticated::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'webhook' => [
+            'throttle:120',
+        ],
     ];
 
     /**
