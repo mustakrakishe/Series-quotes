@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 
 class CharacterSeeder extends Seeder
 {
+    protected $total = 100;
+
     /**
      * Run the database seeds.
      *
@@ -15,7 +17,7 @@ class CharacterSeeder extends Seeder
     public function run()
     {
         $characters = Character::factory()
-            ->count(env('SEEDER_CHARACTER_COUNT'))
+            ->count($this->total)
             ->create();
     }
 }

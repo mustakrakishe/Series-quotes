@@ -9,6 +9,9 @@ use Illuminate\Database\Seeder;
 
 class QuoteSeeder extends Seeder
 {
+    protected $charactesPerEpisodeMin = 5;
+    protected $charactesPerEpisodeMax = 15;
+
     /**
      * Run the database seeds.
      *
@@ -21,10 +24,7 @@ class QuoteSeeder extends Seeder
         $episodeIdsKeyMax = count($episodeIds) - 1;
 
         foreach (Character::all() as $character) {
-            $quoteCount = rand(
-                env('SEEDER_QUOTE_PER_CHARACTER_MIN'),
-                env('SEEDER_QUOTE_PER_CHARACTER_MAX')
-            );
+            $quoteCount = rand($this->charactesPerEpisodeMin, $this->charactesPerEpisodeMax);
 
             Quote::factory()
                 ->count($quoteCount)

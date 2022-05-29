@@ -8,6 +8,9 @@ use Illuminate\Database\Seeder;
 
 class EpisodeCharacterSeeder extends Seeder
 {
+    protected $quotesPerCharacterMin = 3;
+    protected $quotesPerCharacterMax = 7;
+
     /**
      * Run the database seeds.
      *
@@ -20,10 +23,7 @@ class EpisodeCharacterSeeder extends Seeder
         $characterIdsKeyMax = count($characterIds) - 1;
 
         foreach (Episode::all() as $episode) {
-            $characterCount = rand(
-                env('SEEDER_CHARACTER_PER_EPISODE_MIN'),
-                env('SEEDER_CHARACTER_PER_EPISODE_MAX')
-            );
+            $characterCount = rand($this->quotesPerCharacterMin, $this->quotesPerCharacterMax);
 
             for ($i = 0; $i < $characterCount; $i++) {
                 $characterId = $characterIds[$characterIdKey];

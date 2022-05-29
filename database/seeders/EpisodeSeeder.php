@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 class EpisodeSeeder extends Seeder
 {
+    private $total = 30;
     /**
      * Run the database seeds.
      *
@@ -15,7 +16,7 @@ class EpisodeSeeder extends Seeder
     public function run()
     {
         $episodes = Episode::factory()
-            ->count(env('SEEDER_EPISODE_COUNT'))
+            ->count($this->total)
             ->create();
     }
 }
