@@ -20,6 +20,7 @@ class TelegramServiceProvider extends ServiceProvider
             $bot->addCommands([
                 \Telegram\Bot\Commands\HelpCommand::class,
                 \App\Services\Telegram\Commands\StartCommand::class,
+                \App\Services\Telegram\Commands\CharactersCommand::class,
             ]);
             return $bot;
         });
