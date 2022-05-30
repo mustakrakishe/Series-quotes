@@ -33,7 +33,7 @@ class CharactersCommand extends Command
                     . "name: $character->name" . PHP_EOL
                     . "nick: $character->nickname" . PHP_EOL
                     . "birth: $character->birthday" . PHP_EOL
-                    . "occups: $character->occopations" . PHP_EOL
+                    . "occups: " . (implode(', ', json_decode($character->occupations)) ?: '-') . PHP_EOL
                     . "portrayed: $character->portrayed" . PHP_EOL
             ]);
         }
