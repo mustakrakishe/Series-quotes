@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Exceptions\Character\CharacterByNameNotFoundException;
 use App\Exceptions\Character\CharacterRandomNotFoundException;
 use App\Models\Character;
+use Illuminate\Support\Facades\DB;
 
 class CharacterRepository
 {
@@ -16,7 +17,7 @@ class CharacterRepository
     public function getFirstByName(string $name)
     {
         $character = Character::with(['episodes', 'quotes'])
-            ->whereRaw('UPPER(name) = ?', [strtoupper($name)])
+            ->where('name', 'like', '%' . $name . '%')
             ->first();
 
         if ($character) {
