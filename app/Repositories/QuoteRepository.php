@@ -16,9 +16,9 @@ class QuoteRepository
     public function getOneRandomByCharacterName(string $name)
     {
         $quote = Quote::with(['character', 'episode'])
-            ->whereHas('character', function (Builder $query) use ($name) {
-                $query->whereRaw('UPPER(name) = ?', [strtoupper($name)]);
-            })
+            ->whereHas('character', (function (Builder $query) use ($name) {
+                $query->where('name', 'like', '%' . $name . '%');
+            }))
             ->inRandomOrder()
             ->first();
         
