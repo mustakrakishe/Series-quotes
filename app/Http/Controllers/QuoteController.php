@@ -27,7 +27,7 @@ class QuoteController extends Controller
     public function getOneRandomByCharacterName(QuoteGetOneByRandomByCharacterNameRequest $request)
     {
         return new QuoteResource(
-            $this->repository->getOneRandomByCharacterName($request->input('character_name'))
+            $this->repository->getOneRandomByCharacterName($request->input('author'))
         );
     }
 }
